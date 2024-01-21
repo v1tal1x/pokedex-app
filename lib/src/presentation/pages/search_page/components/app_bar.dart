@@ -56,3 +56,35 @@ class _AppBarTitle extends StatelessWidget {
     );
   }
 }
+
+class _SortButton extends StatelessWidget {
+  const _SortButton();
+
+  @override
+  Widget build(BuildContext context) {
+    final double borderRadius = 16.0.h;
+    final double padding = 8.0.h;
+    final double iconSize = 16.0.h;
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(borderRadius),
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(borderRadius),
+          color: AppColors.white,
+        ),
+        padding: EdgeInsets.all(padding),
+        child: SvgPicture.asset(
+          AppAssets.icTextFormat,
+          colorFilter: const ColorFilter.mode(
+            AppColors.primary,
+            BlendMode.srcIn,
+          ),
+          width: iconSize,
+          height: iconSize,
+        ),
+      ),
+    );
+  }
+}
