@@ -233,3 +233,85 @@ class _SortButton extends StatelessWidget {
     );
   }
 }
+
+class SortCard extends StatelessWidget {
+  const SortCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const String cardTitle = 'Sort by:';
+    final double cardPadding = 4.0.h;
+    const double cardTopPadding = 0.0;
+    final double verticalPadding = 16.0.h;
+    final double horizontalPadding = 20.0.w;
+    final double cardBorderRadius = 12.0.h;
+    final double typeContainerBorderRadius = 8.0.h;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(cardBorderRadius),
+      ),
+      padding: EdgeInsets.all(cardPadding).copyWith(top: cardTopPadding),
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: verticalPadding,
+              horizontal: horizontalPadding,
+            ),
+            child: Text(
+              cardTitle,
+              style: AppTextStyles.subtitle2.copyWith(color: AppColors.white),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(typeContainerBorderRadius),
+            ),
+            padding: EdgeInsets.symmetric(
+              vertical: verticalPadding,
+              horizontal: horizontalPadding,
+            ),
+            child: const _SortRadioListTile(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+enum SortType { number, name }
+
+class _SortRadioListTile extends StatefulWidget {
+  const _SortRadioListTile();
+
+  @override
+  State<_SortRadioListTile> createState() => __SortRadioListTileState();
+}
+
+class __SortRadioListTileState extends State<_SortRadioListTile> {
+  SortType? _selectedType = SortType.number;
+
+  @override
+  Widget build(BuildContext context) {
+    final double spacer = 16.0.h;
+
+    return Column(
+      children: <Widget>[
+        RadioListTile<SortType>(
+          value: SortType.number,
+          groupValue: _selectedType,
+          onChanged: (SortType? value) => setState(() => _selectedType = value),
+        ),
+        SizedBox(height: spacer),
+        RadioListTile<SortType>(
+          value: SortType.name,
+          groupValue: _selectedType,
+          onChanged: (SortType? value) => setState(() => _selectedType = value),
+        ),
+      ],
+    );
+  }
+}
