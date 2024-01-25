@@ -297,16 +297,21 @@ class __SortRadioListTileState extends State<_SortRadioListTile> {
   @override
   Widget build(BuildContext context) {
     final double spacer = 16.0.h;
+    final double contentLeftPadding = 8.0.w;
 
     return Column(
       children: <Widget>[
         RadioListTile<SortType>(
+          fillColor: const MaterialStatePropertyAll(AppColors.primary),
+          contentPadding: EdgeInsets.only(left: contentLeftPadding),
           value: SortType.number,
           groupValue: _selectedType,
           onChanged: (SortType? value) => setState(() => _selectedType = value),
         ),
         SizedBox(height: spacer),
         RadioListTile<SortType>(
+          fillColor: const MaterialStatePropertyAll(AppColors.primary),
+          contentPadding: EdgeInsets.only(left: contentLeftPadding),
           value: SortType.name,
           groupValue: _selectedType,
           onChanged: (SortType? value) => setState(() => _selectedType = value),
