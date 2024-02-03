@@ -19,7 +19,6 @@ class _PokemonItem extends StatelessWidget {
     final double itemVerticalPadding = 4.0.h;
     final double itemHorizontalPadding = 8.0.w;
     final double itemBorderRadius = 8.0.h;
-    const double decorationWidth = double.infinity;
     final double decorationHeight = 44.0.h;
     final double decorationTopBorderRadius = 7.0.h;
     const String idMarker = '#';
@@ -29,19 +28,16 @@ class _PokemonItem extends StatelessWidget {
         Container(
           width: itemWidth,
           height: itemHeight,
-          padding: EdgeInsets.symmetric(
-            vertical: itemVerticalPadding,
-            horizontal: itemHorizontalPadding,
-          ),
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: BorderRadius.circular(itemBorderRadius),
+            boxShadow: <BoxShadow>[AppShadows.dropShadow2dp],
           ),
         ),
         Positioned(
           bottom: 0.0,
           child: Container(
-            width: decorationWidth,
+            width: itemWidth,
             height: decorationHeight,
             decoration: BoxDecoration(
               color: AppColors.background,
@@ -53,23 +49,29 @@ class _PokemonItem extends StatelessWidget {
           ),
         ),
         Positioned.fill(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  idMarker + pokemon.id.toString(),
-                  style:
-                      AppTextStyles.caption.copyWith(color: AppColors.medium),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: itemVerticalPadding,
+              horizontal: itemHorizontalPadding,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    idMarker + pokemon.id.toString(),
+                    style:
+                        AppTextStyles.caption.copyWith(color: AppColors.medium),
+                  ),
                 ),
-              ),
-              const _ItemImage(imageUrl: null),
-              Text(
-                capitalize(pokemon.name),
-                style: AppTextStyles.body3,
-              ),
-            ],
+                const _ItemImage(imageUrl: null),
+                Text(
+                  capitalize(pokemon.name),
+                  style: AppTextStyles.body3,
+                ),
+              ],
+            ),
           ),
         ),
       ],
