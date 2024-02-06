@@ -1,7 +1,9 @@
 part of '../search_page.dart';
 
 class _Body extends StatelessWidget {
-  const _Body();
+  final List<PokemonEntity>? pokemons;
+
+  const _Body({this.pokemons});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,9 @@ class _Body extends StatelessWidget {
           child: SingleChildScrollView(
             controller: ScrollController(),
             physics: const AlwaysScrollableScrollPhysics(),
-            child: Container(),
+            child: pokemons != null && pokemons!.isNotEmpty
+                ? _PokemonList(pokemons: pokemons!)
+                : Container(),
           ),
         ),
       ),
